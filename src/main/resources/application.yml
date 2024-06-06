@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: security
+
+  profiles:
+    default: local
+    active: local
+
+  devtools:
+    restart:
+      enabled: true
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(465GvBzLkVvj0NNhZEq92Z89CFjX5NW7+UF7Z0ggcU8xicdXhjbQ5dBQ8XA3tpDW)
+    username: ENC(KO5r+aMSd5qczMS5CMbVlw==)
+    password: ENC(KO5r+aMSd5qczMS5CMbVlw==)
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+server:
+  port: 9999
