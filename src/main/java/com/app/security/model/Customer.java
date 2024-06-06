@@ -1,27 +1,23 @@
 package com.app.security.model;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @Entity
-@Table(name = "customer")
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "EMAIL", nullable = false, length = 45)
     private String email;
 
-    @Column(name = "PWD", nullable = false, length = 45)
     private String pwd;
 
-    @Column(name = "ROLE", nullable = false, length = 45)
     private String role;
 
 }
