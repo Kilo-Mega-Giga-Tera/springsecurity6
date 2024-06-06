@@ -1,4 +1,4 @@
-package com.app.security.controller;
+package com.app.security.controller.security;
 
 import com.app.security.model.Customer;
 import com.app.security.repository.CustomerRepository;
