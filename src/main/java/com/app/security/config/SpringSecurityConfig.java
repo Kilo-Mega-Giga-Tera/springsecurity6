@@ -20,7 +20,8 @@ public class SpringSecurityConfig {
                         .requestMatchers("/notices", "/contact", "/register").permitAll()
                 )
                 .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(Customizer.withDefaults())
+                .logout((logout) -> logout.logoutSuccessUrl("/myAccount"));
         return http.build();
     }
 
