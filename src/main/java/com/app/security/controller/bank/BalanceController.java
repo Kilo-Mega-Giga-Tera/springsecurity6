@@ -1,14 +1,23 @@
 package com.app.security.controller.bank;
 
+import com.app.security.model.AccountTransactions;
+import com.app.security.repository.AccountTransactionsRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
+@RequiredArgsConstructor
 public class BalanceController {
 
+    private final AccountTransactionsRepository accountTransactionsRepository;
+
     @GetMapping("/myBalance")
-    public String getBalanceDetails() {
-        return "getBalanceDetails";
+    public List<AccountTransactions> getBalanceDetails(@RequestParam int id) {
+        return accountTransactionsRepository.findByCustomerIdOrderByTransactionDtDesc(id);
     }
 
 }

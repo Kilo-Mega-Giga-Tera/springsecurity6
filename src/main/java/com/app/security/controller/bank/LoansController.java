@@ -1,14 +1,23 @@
 package com.app.security.controller.bank;
 
+import com.app.security.model.Loans;
+import com.app.security.repository.LoanRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
+@RequiredArgsConstructor
 public class LoansController {
 
+    private final LoanRepository loanRepository;
+
     @GetMapping("/myLoans")
-    public String getLoansDetails() {
-        return "getLoansDetails";
+    public List<Loans> getLoansDetails(@RequestParam int id) {
+        return loanRepository.findByCustomerIdOrderByStartDtDesc(id);
     }
 
 }
