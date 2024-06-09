@@ -27,3 +27,5 @@ decorator:
 server:
   port: 9999
 
+
+url: http://localhost:4200
