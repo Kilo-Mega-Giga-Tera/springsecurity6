@@ -1,4 +1,4 @@
-package com.app.security.controller.bank;
+package com.app.security.controller;
 
 import com.app.security.model.Loans;
 import com.app.security.repository.LoanRepository;

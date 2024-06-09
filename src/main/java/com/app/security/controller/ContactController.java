@@ -1,4 +1,4 @@
-package com.app.security.controller.bank;
+package com.app.security.controller;
 
 import com.app.security.model.ContactMessages;
 import com.app.security.repository.ContactMessageRespository;
