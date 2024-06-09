@@ -22,7 +22,9 @@ public class NoticesController {
         List<NoticeDetails> noticeDetails = noticeDetailRepository.findAllActiveNoticDetails();
 
         if (noticeDetails != null)
-            return ResponseEntity.ok().cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS)).body(noticeDetails);
+            return ResponseEntity.ok()
+                    .cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS))
+                    .body(noticeDetails);
         else
             return null;
 
