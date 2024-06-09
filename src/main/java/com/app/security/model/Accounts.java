@@ -4,11 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "accounts")
 public class Accounts {
@@ -17,10 +15,10 @@ public class Accounts {
     private int customerId;
 
     @Id
-    @Column(name="account_number")
+    @Column(name = "account_number")
     private long accountNumber;
 
-    @Column(name="account_type")
+    @Column(name = "account_type")
     private String accountType;
 
     @Column(name = "branch_address")

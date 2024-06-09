@@ -2,13 +2,9 @@ package com.app.security.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import java.time.LocalDate;
-
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "customer")
 public class Customer {
@@ -35,6 +31,6 @@ public class Customer {
     private String role;
 
     @Column(name = "create_dt")
-    private LocalDate createDt;
+    private String createDt;
 
 }

@@ -4,14 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "contact_messages")
 public class ContactMessages {

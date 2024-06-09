@@ -1,13 +1,11 @@
 package com.app.security.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.sql.Date;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "notice_details")
 public class NoticeDetails {
