@@ -16,7 +16,7 @@ public class LoansController {
     private final LoanRepository loanRepository;
 
     @GetMapping("/myLoans")
-    public List<Loans> getLoansDetails(@RequestParam int id) {
+    public List<Loans> getLoansDetails(@RequestParam("id") int id) {
         return loanRepository.findByCustomerIdOrderByStartDtDesc(id);
     }
 

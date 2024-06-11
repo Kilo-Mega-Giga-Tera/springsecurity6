@@ -16,7 +16,7 @@ public class CardsController {
     private final CardRepository cardRepository;
 
     @GetMapping("/myCards")
-    public List<Cards> getCardsDetails(@RequestParam int id) {
+    public List<Cards> getCardsDetails(@RequestParam("id") int id) {
         return cardRepository.findByCustomerId(id);
     }
 
