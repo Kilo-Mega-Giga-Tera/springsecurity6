@@ -35,7 +35,7 @@ public class LoginController {
             customer.setCreateDt(String.valueOf(new Date(System.currentTimeMillis())));
 
             savedCustomer = customerRepository.save(customer);
-            if (savedCustomer.getCustomerId() > 0) {
+            if (savedCustomer.getId() > 0) {
                 responseEntity = ResponseEntity.status(HttpStatus.CREATED).body("Successfully registered");
             }
         } catch (Exception e) {
