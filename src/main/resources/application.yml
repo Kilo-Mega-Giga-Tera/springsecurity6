@@ -30,3 +30,8 @@ url: http://localhost:4200
 jasypt:
   encryptor:
     password: ${password}
+
+logging:
+  level:
+    org:
+      springframework.security.web.FilterChainProxy: DEBUG
