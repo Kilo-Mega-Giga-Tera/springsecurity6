@@ -1,5 +1,6 @@
 package com.app.security.config;
 
+import com.app.security.filter.AfterBasicAuthenticationFilter;
 import com.app.security.filter.BeforeBasicAuthenticationFilter;
 import com.app.security.filter.CsrfCookieFilter;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,6 +45,7 @@ public class SpringSecurityConfig {
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new BeforeBasicAuthenticationFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new AfterBasicAuthenticationFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/myAccount").hasRole("USER")
                         .requestMatchers("/myBalance").hasAnyRole("ADMIN", "USER")
