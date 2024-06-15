@@ -1,5 +1,5 @@
-README.md
-src/main/.gradle
+HELP.md
+.gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -35,6 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### application.properties ###
+application.properties
 
 ### qodana.yaml ###
 qodana.yaml
