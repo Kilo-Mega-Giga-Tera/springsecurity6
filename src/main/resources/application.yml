@@ -12,10 +12,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ENC(465GvBzLkVvj0NNhZEq92Z89CFjX5NW7+UF7Z0ggcU8xicdXhjbQ5dBQ8XA3tpDW)
-    username: ENC(KO5r+aMSd5qczMS5CMbVlw==)
-    password: ENC(KO5r+aMSd5qczMS5CMbVlw==)
-
+    url: ENC(fLE1DKIKnY0M6SS0QTawTRIuiaN2GgJcPLA957EW2gkthhq5R43NDmRCj6UbbOv3)
+    username: ENC(aDn3Ap1UO1nVF5s4haHo2w==)
+    password: ENC(BAmRa3DG0KaGzFf+JyK5nA==)
 
 decorator:
   datasource:
@@ -23,9 +22,11 @@ decorator:
       enable-logging: true
       logging: slf4j
 
-
 server:
   port: 9999
 
-
 url: http://localhost:4200
+
+jasypt:
+  encryptor:
+    password: ${password}
