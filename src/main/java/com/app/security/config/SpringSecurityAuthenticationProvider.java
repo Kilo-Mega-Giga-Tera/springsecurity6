@@ -1,5 +1,6 @@
 package com.app.security.config;
 
+import com.app.security.model.Authority;
 import com.app.security.model.Customer;
 import com.app.security.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,9 +13,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
@@ -30,17 +33,25 @@ public class SpringSecurityAuthenticationProvider implements AuthenticationProvi
 
         List<Customer> customers = customerRepository.findByEmail(username);
 
-        if (!customers.isEmpty()) {
-            if (passwordEncoder.matches(password, customers.get(0).getPwd())) {
-                List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-                grantedAuthorities.add(new SimpleGrantedAuthority(customers.get(0).getRole()));
-                return new UsernamePasswordAuthenticationToken(username, password, grantedAuthorities);
-            } else {
-                throw new UsernameNotFoundException("아이디 또는 비밀번호가 일치하지 않습니다");
-            }
+        if (ObjectUtils.isEmpty(customers)) {
+            throw new UsernameNotFoundException("아이디 또는 비밀번호가 일치하지 않습니다");
+        }
+
+        if (passwordEncoder.matches(password, customers.get(0).getPwd())) {
+            return new UsernamePasswordAuthenticationToken(username, password, getAuthorities(customers.get(0).getAuthorities()));
         } else {
             throw new UsernameNotFoundException("아이디 또는 비밀번호가 일치하지 않습니다");
         }
+    }
+
+    private List<GrantedAuthority> getAuthorities(Set<Authority> authorities) {
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+
+        authorities.forEach(authority -> grantedAuthorities.add(
+                new SimpleGrantedAuthority(authority.getName())
+        ));
+
+        return grantedAuthorities;
     }
 
     @Override

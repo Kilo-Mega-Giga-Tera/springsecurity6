@@ -1,17 +1,19 @@
 package com.app.security.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Date;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "notice_details")
 public class NoticeDetails {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "notice_id")
     private int noticeId;
 
