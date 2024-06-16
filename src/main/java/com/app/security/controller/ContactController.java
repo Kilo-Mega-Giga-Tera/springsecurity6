@@ -27,10 +27,9 @@ public class ContactController {
      *  If 'contactName' contains the word 'Test', it will be filtered.
      *  In this case, you cannot save contact message.
      *
-     *
      *  Check before the method is executed.
      */
-     @PreFilter("filterObject.contactName != 'Test'")
+    @PreFilter("filterObject.contactName != 'Test'")
 
     /*
      *  This code is test for method level security.
