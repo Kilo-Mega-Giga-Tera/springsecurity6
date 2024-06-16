@@ -51,9 +51,9 @@ public class JWTGeneratorFilter extends OncePerRequestFilter {
     private String getAuthorities(Collection<? extends GrantedAuthority> collection) {
         Set<String> authoritiesSet = new HashSet<>();
 
-        collection.forEach((authority) -> {
-            authoritiesSet.add(authority.getAuthority());
-        });
+        collection.forEach((authority) ->
+            authoritiesSet.add(authority.getAuthority())
+        );
 
         return String.join(",", authoritiesSet);
     }
