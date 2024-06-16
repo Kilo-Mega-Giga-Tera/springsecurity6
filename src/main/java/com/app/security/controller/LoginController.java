@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,7 +50,7 @@ public class LoginController {
     public Customer getUserDetail(Authentication authentication) {
         List<Customer> customers = customerRepository.findByEmail(authentication.getName());
 
-        if (customers.isEmpty())
+        if (ObjectUtils.isEmpty(customers))
             return null;
         else
             return customers.get(0);

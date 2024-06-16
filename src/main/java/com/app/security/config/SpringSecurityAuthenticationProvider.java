@@ -4,6 +4,7 @@ import com.app.security.model.Authority;
 import com.app.security.model.Customer;
 import com.app.security.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,7 @@ import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class SpringSecurityAuthenticationProvider implements AuthenticationProvider {
 
     private final CustomerRepository customerRepository;

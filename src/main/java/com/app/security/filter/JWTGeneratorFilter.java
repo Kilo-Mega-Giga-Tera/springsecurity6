@@ -39,6 +39,8 @@ public class JWTGeneratorFilter extends OncePerRequestFilter {
                     .signWith(key).compact();
             response.setHeader(SpringSecurityContants.JWT_HEADER, jwt);
         }
+
+        filterChain.doFilter(request, response);
     }
 
     @Override

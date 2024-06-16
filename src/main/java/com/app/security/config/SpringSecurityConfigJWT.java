@@ -46,8 +46,8 @@ public class SpringSecurityConfigJWT {
                 .addFilterBefore(new BeforeBasicAuthenticationFilter(), BasicAuthenticationFilter.class)
                 .addFilterAt(new AtBasicAuthenticationFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new AfterBasicAuthenticationFilter(), BasicAuthenticationFilter.class)
-                .addFilterBefore(new JWTValidatorFilter(),BasicAuthenticationFilter.class)
-                .addFilterAfter(new JWTGeneratorFilter(),BasicAuthenticationFilter.class)
+                .addFilterBefore(new JWTValidatorFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new JWTGeneratorFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/myAccount").hasRole("USER")
                         .requestMatchers("/myBalance").hasAnyRole("ADMIN", "USER")
