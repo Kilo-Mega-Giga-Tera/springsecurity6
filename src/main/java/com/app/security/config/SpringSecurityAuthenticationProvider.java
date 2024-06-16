@@ -34,13 +34,13 @@ public class SpringSecurityAuthenticationProvider implements AuthenticationProvi
         List<Customer> customers = customerRepository.findByEmail(username);
 
         if (ObjectUtils.isEmpty(customers)) {
-            throw new UsernameNotFoundException("아이디 또는 비밀번호가 일치하지 않습니다");
+            throw new UsernameNotFoundException("Invalid username or password");
         }
 
         if (passwordEncoder.matches(password, customers.get(0).getPwd())) {
             return new UsernamePasswordAuthenticationToken(username, password, getAuthorities(customers.get(0).getAuthorities()));
         } else {
-            throw new UsernameNotFoundException("아이디 또는 비밀번호가 일치하지 않습니다");
+            throw new UsernameNotFoundException("Invalid username or password");
         }
     }
 

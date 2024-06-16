@@ -1,8 +1,6 @@
 package com.app.security.config;
 
-import com.app.security.filter.AfterBasicAuthenticationFilter;
-import com.app.security.filter.BeforeBasicAuthenticationFilter;
-import com.app.security.filter.CsrfCookieFilter;
+import com.app.security.filter.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,9 +16,10 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Collections;
+import java.util.List;
 
 @Configuration
-public class SpringSecurityConfig {
+public class SpringSecurityConfigJWT {
 
     @Value("${url}")
     private String url;
@@ -30,14 +29,14 @@ public class SpringSecurityConfig {
         CsrfTokenRequestAttributeHandler csrfTokenRequestAttributeHandler = new CsrfTokenRequestAttributeHandler();
         csrfTokenRequestAttributeHandler.setCsrfRequestAttributeName("_csrf");
 
-        http.securityContext((context) -> context.requireExplicitSave(false))
-                .sessionManagement((management) -> management.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
+        http.sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .cors((cors) -> cors.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
                     config.setAllowedOrigins(Collections.singletonList(url));
                     config.setAllowedMethods(Collections.singletonList("*"));
                     config.setAllowCredentials(true);
                     config.setAllowedHeaders(Collections.singletonList("*"));
+                    config.setExposedHeaders(List.of("Authorization"));
                     config.setMaxAge(3600L);
                     return config;
                 }))
@@ -45,7 +44,10 @@ public class SpringSecurityConfig {
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new BeforeBasicAuthenticationFilter(), BasicAuthenticationFilter.class)
+                .addFilterAt(new AtBasicAuthenticationFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new AfterBasicAuthenticationFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JWTValidatorFilter(),BasicAuthenticationFilter.class)
+                .addFilterAfter(new JWTGeneratorFilter(),BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/myAccount").hasRole("USER")
                         .requestMatchers("/myBalance").hasAnyRole("ADMIN", "USER")
