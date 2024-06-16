@@ -13,6 +13,8 @@ public interface LoanRepository extends CrudRepository<Loans, Long> {
 
     /*
      *  This code is test for method level security.
+     *
+     *  Check before the method is executed.
      */
     @PreAuthorize("hasAnyRole('USER')")
     List<Loans> findByCustomerIdOrderByStartDtDesc(int customerId);
